@@ -9,9 +9,9 @@ echo "adding files to zip file: $ZIPFILE, compare with $COMPARE_VERSION"
 [ -f $ZIPFILE ] && rm $ZIPFILE
 cd $PROJECT_ROOT
 if [ -d .git ]; then
-    git diff --name-only $COMPARE_VERSION ./res/ | awk '{ print $1 }' | xargs zip $ZIPFILE
+    git diff --name-only $COMPARE_VERSION . | awk '{ print $1 }' | xargs zip $ZIPFILE
 elif [ -d .svn ]; then
-    svn status ./res/ | awk '{ print $2 }' | xargs zip $ZIPFILE
+    svn status . | awk '{ print $2 }' | xargs zip $ZIPFILE
 else
     echo "no version control system"
 fi
